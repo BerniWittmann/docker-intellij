@@ -21,12 +21,13 @@ WORKDIR /home/ijinspector
 
 USER ijinspector:ijinspector
 
-ARG IDEA_VERSION=ideaIC-2018.1.1
+ARG IDEA_VERSION=ideaIC-2019.1.1
+ARG idea_source=https://download.jetbrains.com/idea/ideaIC-2019.1.1.tar.gz
+ARG idea_local_dir=.IdeaIC2019.1
 
-RUN curl https://download-cf.jetbrains.com/idea/${IDEA_VERSION}-no-jdk.tar.gz > /tmp/ideaIC-jdk.tar.gz \
-  && mkdir idea-IC \
-  && tar -x -C idea-IC --strip-components=1 -z -f /tmp/ideaIC-jdk.tar.gz \
-  && rm /tmp/ideaIC-jdk.tar.gz
+RUN curl -fsSL $idea_source -o /opt/idea/installer.tgz \
+  && tar --strip-components=1 -xzf installer.tgz \
+  && rm installer.tgz
 
 RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip > /tmp/apache-groovy.zip \
   && unzip /tmp/apache-groovy.zip \

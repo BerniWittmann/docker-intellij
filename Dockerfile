@@ -1,4 +1,4 @@
-FROM openjdk:8u151-jdk
+FROM oracle-java8
 
 LABEL maintainer "Bernhard Wittmann <dev@bernhardwittmann.com>"
 

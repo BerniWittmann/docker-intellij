@@ -9,7 +9,6 @@
         <annotationsPath>
           <root type="composite">
             <root url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" type="simple" />
-            <root url="file:///home/ijinspector/idea-jdk-external-annotations" type="simple" />
           </root>
         </annotationsPath>
         <classPath>

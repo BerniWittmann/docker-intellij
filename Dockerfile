@@ -17,12 +17,7 @@ WORKDIR /opt/idea
 RUN curl -fsSL $idea_source -o /opt/idea/installer.tgz \
   && tar --strip-components=1 -xzf installer.tgz \
   && rm installer.tgz
-
-RUN groupadd -r ijinspector && useradd --no-log-init --gid ijinspector --home-dir /home/ijinspector --create-home ijinspector
-
-
-USER ijinspector:ijinspector
-
+  
 RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip > /tmp/apache-groovy.zip \
   && unzip /tmp/apache-groovy.zip \
   && rm /tmp/apache-groovy.zip \
@@ -30,11 +25,15 @@ RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip 
   && curl -L https://github.com/bentolor/idea-cli-inspector/archive/master.zip > /tmp/bentolor.zip \
   && unzip /tmp/bentolor.zip \
   && rm /tmp/bentolor.zip \
-&& mv idea-cli-inspector-* idea-cli-inspector
+  && mv idea-cli-inspector-* idea-cli-inspector
 
-COPY --chown=ijinspector:ijinspector jdk.table.xml /home/ijinspector/$idea_local_dir/config/options/jdk.table.xml
+RUN groupadd -r ijinspector && useradd --no-log-init --gid ijinspector --home-dir /home/ijinspector --create-home ijinspector
+
+USER ijinspector:ijinspector
 
 WORKDIR /home/ijinspector
+
+COPY --chown=ijinspector:ijinspector jdk.table.xml /home/ijinspector/$idea_local_dir/config/options/jdk.table.xml
 
 RUN mkdir /home/ijinspector/.Idea \
   && ln -sf /home/ijinspector/.Idea /home/ijinspector/$idea_local_dir

@@ -22,6 +22,15 @@ RUN curl -fsSL $idea_source -o /opt/idea/installer.tgz \
 USER developer
 ENV HOME /home/developer
 
+RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip > /tmp/apache-groovy.zip \
+  && unzip /tmp/apache-groovy.zip \
+  && rm /tmp/apache-groovy.zip \
+  && mv groovy-* groovy \
+  && curl -L https://github.com/bentolor/idea-cli-inspector/archive/master.zip > /tmp/bentolor.zip \
+  && unzip /tmp/bentolor.zip \
+  && rm /tmp/bentolor.zip \
+&& mv idea-cli-inspector-* idea-cli-inspector
+
 COPY --chown=developer jdk.table.xml /home/developer/$idea_local_dir/config/options/jdk.table.xml
 
 RUN mkdir /home/developer/.Idea \

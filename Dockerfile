@@ -20,7 +20,6 @@ RUN curl -fsSL $idea_source -o /opt/idea/installer.tgz \
 
 RUN groupadd -r ijinspector && useradd --no-log-init --gid ijinspector --home-dir /home/ijinspector --create-home ijinspector
 
-WORKDIR /home/ijinspector
 
 USER ijinspector:ijinspector
 
@@ -34,6 +33,8 @@ RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip 
 && mv idea-cli-inspector-* idea-cli-inspector
 
 COPY --chown=ijinspector:ijinspector jdk.table.xml /home/ijinspector/$idea_local_dir/config/options/jdk.table.xml
+
+WORKDIR /home/ijinspector
 
 RUN mkdir /home/ijinspector/.Idea \
   && ln -sf /home/ijinspector/.Idea /home/ijinspector/$idea_local_dir

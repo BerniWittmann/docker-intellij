@@ -1,4 +1,6 @@
-<jdk version="2">
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
       <name value="1.8" />
       <type value="JavaSDK" />
       <version value="java version &quot;1.8.0_151&quot;" />
@@ -45,4 +47,6 @@
         </sourcePath>
       </roots>
       <additional />
-</jdk>
+    </jdk>
+  </component>
+</application>

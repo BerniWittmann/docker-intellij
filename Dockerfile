@@ -33,9 +33,9 @@ USER ijinspector:ijinspector
 
 WORKDIR /home/ijinspector
 
-RUN chown -R ijinspector:ijinspector /opt/idea
-
 COPY --chown=ijinspector:ijinspector jdk.table.xml /home/ijinspector/$idea_local_dir/config/options/jdk.table.xml
 
 RUN mkdir /home/ijinspector/.Idea \
   && ln -sf /home/ijinspector/.Idea /home/ijinspector/$idea_local_dir
+
+USER root

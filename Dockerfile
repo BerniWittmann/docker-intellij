@@ -9,6 +9,15 @@ RUN  \
   libfontconfig1 libgtk2.0-0 libxslt1.1 libxxf86vm1 \
   && rm -rf /var/lib/apt/lists/* \
   && useradd -ms /bin/bash developer
+  
+RUN curl -L https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.13.zip > /tmp/apache-groovy.zip \
+  && unzip /tmp/apache-groovy.zip \
+  && rm /tmp/apache-groovy.zip \
+  && mv groovy-* groovy \
+  && curl -L https://github.com/bentolor/idea-cli-inspector/archive/master.zip > /tmp/bentolor.zip \
+  && unzip /tmp/bentolor.zip \
+  && rm /tmp/bentolor.zip \
+&& mv idea-cli-inspector-* idea-cli-inspector
 
 ARG idea_source=https://download.jetbrains.com/idea/ideaIC-2019.1.1.tar.gz
 ARG idea_local_dir=.IdeaIC2019.1

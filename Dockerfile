@@ -31,7 +31,7 @@ RUN mkdir /home/developer
 
 WORKDIR /home/developer
 
-COPY --chown=developer jdk.table.xml /home/developer/$idea_local_dir/config/options/jdk.table.xml
+COPY jdk.table.xml /home/developer/$idea_local_dir/config/options/jdk.table.xml
 
 RUN mkdir /home/developer/.Idea \
 && ln -sf /home/developer/.Idea /home/developer/$idea_local_dir
